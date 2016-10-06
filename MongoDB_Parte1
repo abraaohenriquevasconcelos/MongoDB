@@ -1,6 +1,7 @@
 1)O MongoDB é escrito em C++ e transforma o JSON em BSON que é JSON binário. 
 
-2)O MongoDB consegue alocar os dados binariamente de uma maneira sequencial no HD isso deixa a busca muito mais rápida do que alocar os dados em locais diferentes do HD 
+2)O MongoDB consegue alocar os dados binariamente de uma maneira sequencial no HD isso deixa a busca muito mais rápida do que
+alocar os dados em locais diferentes do HD 
 
 3)Terminologia entre MongoDB e SQL
 
@@ -33,11 +34,16 @@ sudo pat-get install -y --allow-unauthenticated mongodb-org
 
 
 
-5) Pode executar o mongod que verá o "mongo" rodando no seu terminal. O arquivo /etc/mongod.conf contém a configuração padrão do mongod. Também podemos rodar o mongod como serviço, neste caso o usuário padrão é o mongod e o diretório dos dados será em /var/lib/mongo, os logs ficarão em /var/log/mongodb -> sudo service mongod start
+5) Pode executar o mongod que verá o "mongo" rodando no seu terminal. O arquivo /etc/mongod.conf contém a configuração padrão
+do mongod. Também podemos rodar o mongod como serviço, neste caso o usuário padrão é o mongod e o diretório dos dados será 
+em /var/lib/mongo, os logs ficarão em /var/log/mongodb -> sudo service mongod start
 
 6)MongoDb Cliente
 
-Depois de utilizarmos o MongoDB precisamos rodar seu cliente para que possamos interagir com ele via linha de comando, para isso basta executar o comando "mongo" no seu terminal. Executando dessa forma ele irá se conectar em uma database chamada test, para que  você execute o cliente diretamente em uma database específica, basta passar o nome dela logo após o comando:
+Depois de utilizarmos o MongoDB precisamos rodar seu cliente para que possamos interagir com ele via linha de comando, para 
+isso basta executar o comando "mongo" no seu terminal. Executando dessa forma ele irá se conectar em uma 
+database chamada test, para que  você execute o cliente diretamente em uma database específica, basta passar o nome 
+dela logo após o comando:
 Ex: mongo be-mean-instagram
 
 
@@ -50,9 +56,12 @@ Escalabilidade Horizontal
 
 Existem 2 tipo de escalabilidade, a horizontal e a vertical. Qual suas diferenças?
 
-É bem simples, normalmente quando você utiliza bancos de dados relacionais sua performance do banco aumenta quando você aumenta o poder do servidor como adicionar mais memória RAM, SSD. Nesse caso você faz ele crescer para cima.
+É bem simples, normalmente quando você utiliza bancos de dados relacionais sua performance do banco aumenta quando você 
+aumenta o poder do servidor como adicionar mais memória RAM, SSD. Nesse caso você faz ele crescer para cima.
 
-Na escalabilidade horizontal há um ganho na distribuição de dados, pois quanto mais dados forem armazenados, o número de servidores aumentarão e há uma otimização no armazenamento dos dados, já que eles serão divididos entre todos os servidores, facilitando o gerenciamento e o processamento dos dados
+Na escalabilidade horizontal há um ganho na distribuição de dados, pois quanto mais dados forem armazenados, o número de 
+servidores aumentarão e há uma otimização no armazenamento dos dados, já que eles serão divididos entre todos os servido
+res, facilitando o gerenciamento e o processamento dos dados
 
 
 
@@ -63,14 +72,17 @@ Grupo Documento
 Grupo Grafo
 Grupo Coluna
 
-Chave/Valor -> Esse tipo de banco de dados são utilizados para resolver o problema de cache, pois a estrutura que eles usam é bem simples, é a estrutura que temos em qualquer banco como índice.
+Chave/Valor -> Esse tipo de banco de dados são utilizados para resolver o problema de cache, pois a estrutura que eles usam é
+bem simples, é a estrutura que temos em qualquer banco como índice.
 
 Sabe quando você vai criar um índice na sua tabela de banco de dados para que ela tenha maior velocidade nas buscas?
 
 Então é a mesma coisa aqui, a estrutura de uma entidade nesse tipo de banco segue a seguinte regra:
 chave: valor
 
-Então com uma chave específica você acessará diretamente essa entidade que pode ser apenas: um número, uma palavra, um array, um objeto, qualquer coisa. Porém você só consegue acessar essa entidade e seus valores a partir da chave, logo você não possui uma busca pelos valores internos. Vou dar um exemplo simples em JavaScript:
+Então com uma chave específica você acessará diretamente essa entidade que pode ser apenas: um número, uma palavra, um array, um
+objeto, qualquer coisa. Porém você só consegue acessar essa entidade e seus valores a partir da chave, logo você não possui uma
+busca pelos valores internos. Vou dar um exemplo simples em JavaScript:
 
 > var banco_chave_valor = [];
 
@@ -82,9 +94,11 @@ Então com uma chave específica você acessará diretamente essa entidade que p
 > banco_chave_valor
 [ 'minha-chave-unica-malandrinha': { name: 'Suissa', teacher: true } ]
 
-O que fiz foi criar um array vazio em "banco_chave_valo" e depois crio uma entidade chamada valor contendo o seguinte objeto: { name: 'Suissa', teacher: true } e atribuo esse valor à minha chave "minha-chave-unica-malandrinha"
+O que fiz foi criar um array vazio em "banco_chave_valo" e depois crio uma entidade chamada valor contendo o seguinte 
+objeto: { name: 'Suissa', teacher: true } e atribuo esse valor à minha chave "minha-chave-unica-malandrinha"
 
-Agora caso estivermos em um banco de Chave/Valor nós só podemos acessar os valores dessa entidade se buscarmos pela sua chave "minha-chave-unica-malandrinha" para depois acessarmos seus valores internamente:
+Agora caso estivermos em um banco de Chave/Valor nós só podemos acessar os valores dessa entidade se buscarmos pela sua
+chave "minha-chave-unica-malandrinha" para depois acessarmos seus valores internamente:
 
 > var busca_entidade_malandrinha = banco_chave_valor['minha-chave-unica-malandrinha']
 
@@ -94,7 +108,8 @@ Agora caso estivermos em um banco de Chave/Valor nós só podemos acessar os val
 > busca_entidade_malandrinha.name
 'Suissa'
 
-Bem simples esse conceito não? E como a maioria desses bancos funcionam operando apenas na RAM, para depois persistir, no caso de alguns
+Bem simples esse conceito não? E como a maioria desses bancos funcionam operando apenas na RAM, para depois persistir, no 
+caso de alguns
 
 
 
