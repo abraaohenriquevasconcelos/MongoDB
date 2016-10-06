@@ -1,0 +1,35 @@
+1)Tipo de banco NoSQL -> Documento
+
+Um banco baseado em documento se assemelha bastante ao chave/valor pois tambem possui aquela estrutura:
+chave: valor
+
+Porém dessa vez também temos a busca pelos valores internos da nossa entidade e para isso o MongoDB usa uma API bem simples e 
+fácil de aprender que veremos a frente.
+
+O tipo de documento em que o MongoDB é baseado é o JSON
+
+Para que usar?
+
+Modelagem complexa e buscas dinâmicas.
+
+Grafo
+
+Um banco de dados orientado a grafos possui uma base na teoria matemárica dos gragos, mas que não é nada difícil, precisamos
+apenas pensar nas entidades como pontos(vértices) e que elas podem se relacionar com outras entidades a partir de 
+relações(arestas)
+
+Esse tipo de banco é perfeito para redes sociais.
+
+
+2)Terminologia MogoDB
+
+Relacional			Mongo
+Tabelas				Collections
+Linhas				Documentos
+Colunas				Campos
+
+
+3)No windows temos que criar a pasta onde ficará salvo os bancos C:\data\db. Depois para subir o serviço
+digitamos 'mongod'. Já no Ubuntu devemos criar a mesma pasta só que na raiz "\" então fica \data\db e 
+depois sudo chmod 777 \data
+
