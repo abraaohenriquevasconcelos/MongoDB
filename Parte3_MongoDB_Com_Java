@@ -41,3 +41,87 @@ MongoClient provide a useful method to get all the database names, as shown belo
 
 List<String> allDatabases = mongoClient.getDatabaseNames();
 System.out.println(allDatabases); // [Journaldev, local, admin]
+
+
+3)We can have user-password based authentication for databases, in that case we need to provide authorization credentials
+like below:
+
+MongoCredential mongoCredential = MongoCredential.createPlainCredential("henrique", "journaldev", "pankaj123" .toCharArray());
+String s = "João da Silva";
+char[] charArray = s.toCharArray();
+		
+for(char c : charArray){
+	System.out.println("["+c+"]");
+}
+[J]
+[o]
+[ã]
+[o]
+[ ]
+[d]
+[a]
+[ ]
+[S]
+[i]
+[l]
+[v]
+[a]
+
+MongoCredential testAuth = MongoCredential.createPlainCredential("pankaj", "teste", "pankaj123" .toCharArray());
+List<MongoCredential> auths = new ArrayList<MongoCredential>();
+auths.add(mongoCredential);
+auths.add(testAuth);
+
+ServerAddress serverAddress = new ServerAddress("localhost", 27017);
+MongoClient mongoClient = new MongoClient(serverAddress, auths);
+
+If you are using older versions, you need to provide authentication datails after getting the database object like below:
+MongoClient mongoClient = new MongoClient("localhost", 27017);
+DB my_db = mongoClient.getDB("journaldev");
+boolean auth_bool = my_db.authenticate("pankaj", "pankaj123" .toCharArray());
+You can easily figure out flaws in the earlier approach, the authentication should be done at early stage because we can't
+recover from it.
+
+We can drop a database either by using MongoClient dropDatabase(String db) method or by DB dropDatabase() method. Since(uma 
+vez que) we are dropping the database, I prefer to use MongoClient  method.
+
+4)MongoDB and Collections
+Every database can have zero or multiple collections, they are like tables in relational database servers except that you
+don't have specific format of data. Think of it(pense nisso) like a generic list vs list of Strings in terms of java 
+programming language. 
+
+We can get all the collections names using below code:
+MongoClient mongoClient = new MongoClient("localhost", 27017);
+Db my_db = mongoClient.getDB("journaldev");
+Set<String> colecoes = my_db.getCollectionNames();
+
+We can get a specific collection by providing it's name, as shown below.
+DB my_db = mongoClient.getDB("journaldev");
+DBCollection collection1 = my_db.getCollection("usuarios");
+Again if the collection doesn't exist, MongoDB will create it for you. All t
+he data in MongoDB goes into some collection, so
+at this point we are ready to perform insert/update/delete operations
+
+5) Um documento no MongoDB tem as mesmas características do JSON que é "campo" e "valor" 
+{
+  name: "Sue",
+  age: 26,
+  status: "A",
+  groups: ["news", "sports"]
+}
+
+MongoDB stores all documents in collections. A collection is a group of related documents that fave a set of shared common
+indexes.
+
+1Para criar um banc usamos o comando: use bancoMongoDB1.
+2Para mostrar todos os bancos existentes: show dbs
+3Para mostrar o banco em que estamos atualmente: db
+4Não precisamos explicitamente criar uma collection, basta inserir um documento que MongoDB criará a collection
+5Então para criar a colecão e um documento de uma vez só fazemos db.<nome_da_colecao>.insert({ ... }). A coleção não existia 
+antes de rodar o comando de inserção do documento:
+db.usuarios.insert({
+  usuario_id: 1,
+  idade: 55,
+  status: "A"
+})
+6Para selecionar todos os documentos: db.usuarios.find()
