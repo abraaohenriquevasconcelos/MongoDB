@@ -1,0 +1,78 @@
+
+I want to create the following document schema in mongoDB using the java driver
+
+{
+  "_id": {
+    "$oid": "513e9820c5d0d8b93228d7e8"
+  },
+  "suitename": "testsuite_name",
+  "testname": "testcase_name",
+  "milestones": [
+    {
+      "milestone_id": "359",
+      "testplans": [
+        {
+          "pland_id": "965",
+          "runs": [
+            6985,
+            5896
+          ]
+        },
+        {
+          "plan_id": "984",
+          "runs": [
+            9856,
+            3684
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+I have the following code:
+
+BasicDBObject testObject = new BasicDBObject();
+BasicDBObject milestoneObject = new BasicDBObject();
+
+testObject.put("suitename", testsuite);
+
+{
+  "_id": {
+    "$oid": "513f93dac5d0e2439d34308e"
+  },
+ ********************************************************************
+ ********************************************************************
+  testObject.put("testname", testcase);
+  
+  {
+  "_id": {
+    "$oid": "513f93dac5d0e2439d34308e"
+  },
+  "suitename": "test_deployment_disable_client.TestDeploymentDisableClient",
+  "testname": "test_deployment_disable_client",
+  
+ ********************************************************************
+ ********************************************************************
+ testObject.put("milestones",new BasicDBObject("milestone_id", "2333"));
+ 
+ {
+  "_id": {
+    "$oid": "513f93dac5d0e2439d34308e"
+  },
+  "suitename": "test_deployment_disable_client.TestDeploymentDisableClient",
+  "testname": "test_deployment_disable_client",
+  "milestones": {
+    "milestone_id": "2333"
+  }
+}
+
+ ********************************************************************
+ ********************************************************************
+ 
+ Soloution:
+ List<BasicDBObject> milestones = new ArrayList<>();
+ milestones.add(new BasicDBObject("milestone_id", "2333"));
+ testObject.put("milestones", milestones);
+ locations.insert(testObject);
+ 
