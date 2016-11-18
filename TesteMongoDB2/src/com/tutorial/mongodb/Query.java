@@ -29,6 +29,15 @@ public class Query {
 		*/
 	}
 
+	/*
+	testObject.put("suitename", testsuite);
+	testObject.put("testname", testcase);         
+	List<BasicDBObject> milestones = new ArrayList<>();
+	milestones.add(new BasicDBObject("milestone_id", "2333"));
+	testObject.put("milestones", milestones);
+	locations.insert(testObject);
+	
+	*/
 	
 }
 
