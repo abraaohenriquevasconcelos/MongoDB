@@ -19,6 +19,7 @@ public class Conexao {
 		System.out.println(my_db.collectionExists("usuarios"));
 		
 		System.out.println(my_db.command("usuarios.find()"));
+		//@@@@
 	}
 
 }
